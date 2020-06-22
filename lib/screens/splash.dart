@@ -50,31 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
     'images/s1.gif',
   );
 
-  final Text _intro = new Text(
-    "Chest X ray Covid-19 detector",
-    style: GoogleFonts.playfairDisplay(
-      textStyle: TextStyle(
-        color: Colors.blue,
-        fontSize: 40,
-        fontWeight: FontWeight.w500,
-      ),
-    ),
-    textAlign: TextAlign.center,
-    overflow: TextOverflow.clip,
-  );
 
-  final Text _name = new Text(
-    " covid-19  scanner",
-    style: GoogleFonts.oswald(
-      textStyle: TextStyle(
-        color: Colors.blue,
-        fontSize: 40,
-        fontWeight: FontWeight.w500,
-      ),
-    ),
-    textAlign: TextAlign.center,
-    overflow: TextOverflow.clip,
-  );
 
   // ignore: non_constant_identifier_names
   Widget _spacer(double i) => SizedBox(
@@ -90,11 +66,9 @@ class _SplashScreenState extends State<SplashScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               _spacer(150),
-              _intro,
               _spacer(20),
               _img,
               _spacer(10),
-              _name,
               Expanded(
                 child: SizedBox(),
               ),
