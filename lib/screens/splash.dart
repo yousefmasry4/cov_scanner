@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:cov_scanner/utility/connection.dart';
+import 'package:cov_scanner/constants.dart';
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -13,6 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   bool connection_test=false;
 
   startTime() async {
+    await corona_corona.load();
     bool x=await connection_test_fun();
     setState(() {
       connection_test=x;
@@ -27,7 +29,8 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.of(context).pushNamedAndRemoveUntil(
           Routes.no_connection, (Route<dynamic> route) => false);
     }else{
-      print("gogogo");
+      Navigator.of(context).pushNamedAndRemoveUntil(
+          Routes.home, (Route<dynamic> route) => false);
     }
   }
 
