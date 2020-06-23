@@ -28,6 +28,7 @@ dependencies:
   flutter_svg: ^0.17.4
   fl_chart: ^0.9.3
   image_picker: ^0.6.7+2
+  multipart_request: ^0.3.0
   rounded_loading_button: ^1.0.0
 dev_dependencies:
   flutter_test:
@@ -50,6 +51,7 @@ flutter:
     - images/logo.png
     - images/s1.gif
     - assets/icons/
+    - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

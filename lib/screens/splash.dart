@@ -15,6 +15,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   startTime() async {
     await corona_corona.load();
+    await IP.get();
+    print(IP.ip);
     bool x=await connection_test_fun();
     setState(() {
       connection_test=x;

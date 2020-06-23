@@ -42,8 +42,8 @@ class LineReportChart extends StatelessWidget {
           ));
       i++;
     }
-     print(x.length);
-     print(x[0]);
+  //   print(x.length);
+   //  print(x[0]);
     return x;
   }
 }

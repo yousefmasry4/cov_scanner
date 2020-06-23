@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:cov_scanner/constants.dart';
+import 'package:cov_scanner/utility/Routes.dart';
+import 'package:cov_scanner/utility/server.dart';
 import 'package:cov_scanner/widgets/info_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +10,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:multipart_request/multipart_request.dart';
 import "dart:io";
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
@@ -18,12 +21,78 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final RoundedLoadingButtonController _btnController =
-      new RoundedLoadingButtonController();
+  new RoundedLoadingButtonController();
+
+  String nsba="0";
+
+
+  showAlertDialog(BuildContext context) {
+
+    // set up the button
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Error"),
+      content: Text("check the internet connection and retry or try in another time."),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
 
   void _doSomething() async {
-    Timer(Duration(seconds: 3), () {
-      _btnController.success();
+    setState(() {
+      nsba="0";
     });
+    String aaa;
+    // IP.ip.substring(0,IP.ip.length-1)
+    String ip = IP.ip.substring(0, IP.ip.length - 1) + "/test";
+    var request = MultipartRequest();
+
+    request.setUrl(ip);
+    request.addFile("image", _image.path);
+
+    Response response = request.send();
+
+    response.onError = () {
+      _btnController.stop();
+      showAlertDialog(context);
+    };
+
+
+
+  response.progress.listen((int progress){
+    print("progress from response object " + progress.toString());
+    setState(() {
+      nsba=progress.toString();
+    });
+  });
+    response.onComplete = (response) {
+      print(response == "00" ? -1 : 1);
+      _btnController.success();
+
+      setState(() {
+        nsba="0";
+      });
+      Navigator.of(context).pushNamedAndRemoveUntil(
+          Routes.info, (Route<dynamic> route) => false);
+    };
+
+
   }
 
   File _image = null;
@@ -67,18 +136,51 @@ class _HomeScreenState extends State<HomeScreen> {
               splashColor: Colors.red,
               color: Colors.green,
             )
-          : Padding(
+          : Container(
+        height: 140,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Center(
+              child:nsba != "100"?Text(
+                "uploading $nsba %",
+                style: GoogleFonts.varela(
+                  textStyle: TextStyle(
+                    color: Colors.green,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                overflow: TextOverflow.clip,
+              ):Text(
+                "processing",
+                style: GoogleFonts.alef(
+                  textStyle: TextStyle(
+                    color: Colors.green,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                overflow: TextOverflow.clip,
+              ),
+            ),
+            Padding(
               padding: EdgeInsets.only(bottom: 6),
               child: RoundedLoadingButton(
                 child: Text('start testing',
                     style: TextStyle(color: Colors.white)),
                 height: 35,
+                animateOnTap: true,
                 color: Colors.blueGrey,
-                width: double.infinity,
+                width: MediaQuery.of(context).size.width-30,
                 controller: _btnController,
                 onPressed: _doSomething,
               ),
             ),
+          ],
+        ),
+      ),
       appBar: buildAppBar(),
 
 //wrap singlechildscrollview for correct displaying in small density devices
@@ -274,8 +376,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               style: GoogleFonts.adamina(
                                 textStyle: TextStyle(
                                   color: Colors.grey,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w700,
                                 ),
                               ),
                               overflow: TextOverflow.clip,

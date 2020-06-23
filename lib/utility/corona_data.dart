@@ -13,7 +13,7 @@ class Corona_data {
       corona_data.add(data_form(
           i["Confirmed"], i["Deaths"], i["Recovered"], i["Active"], i["Date"]));
     }
-    print(corona_data);
+   // print(corona_data);
 
   }
 
