@@ -87,6 +87,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
       setState(() {
         nsba="0";
+        Routes.m1=response != "00" ?"You have positive result,":"your have a negative result";
+        Routes.m2=response != "00" ?"please check your nearest \nhospital":", please stay safe";
       });
       Navigator.of(context).pushNamedAndRemoveUntil(
           Routes.info, (Route<dynamic> route) => false);

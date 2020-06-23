@@ -1,12 +1,11 @@
 import 'package:cov_scanner/constants.dart';
+import 'package:cov_scanner/utility/Routes.dart';
 import 'package:cov_scanner/widgets/my_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class InfoScreen extends StatefulWidget {
-  String m1,m2;
-  InfoScreen(this.m1, this.m2)
 
 
   @override
@@ -47,8 +46,8 @@ class _InfoScreenState extends State<InfoScreen> {
           children: <Widget>[
             MyHeader(
               image: "assets/icons/coronadr.svg",
-              textTop: "Get to know",
-              textBottom: "About Covid-19.",
+              textTop: Routes.m1,
+              textBottom: Routes.m2,
               offset: offset,
             ),
             Padding(

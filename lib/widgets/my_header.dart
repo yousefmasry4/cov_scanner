@@ -1,6 +1,7 @@
 import 'package:cov_scanner/constants.dart';
 import 'package:cov_scanner/screens/info.dart';
 import 'package:cov_scanner/utility/Routes.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -23,7 +24,7 @@ class _MyHeaderState extends State<MyHeader> {
     return ClipPath(
       clipper: MyClipper(),
       child: Container(
-        padding: EdgeInsets.only(left: 40, top: 50, right: 20),
+        padding: EdgeInsets.only(left: 0, top: 50, right: 0),
         height: 350,
         width: double.infinity,
         decoration: BoxDecoration(
@@ -69,7 +70,9 @@ class _MyHeaderState extends State<MyHeader> {
                       "${widget.textTop} \n${widget.textBottom}",
                       style: kHeadingTextStyle.copyWith(
                         color: Colors.white,
+                        fontSize: 15
                       ),
+                      overflow: TextOverflow.clip,
                     ),
                   ),
                   Container(), // I dont know why it can't work without container

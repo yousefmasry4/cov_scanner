@@ -20,7 +20,7 @@ class Routes {
       Routes.splash: (context) => SplashScreen(),
       Routes.no_connection: (context) => NoConnection(),
       Routes.home: (context) => HomeScreen(),
-      Routes.info: (context) => InfoScreen(m1,m2)
+      Routes.info: (context) => InfoScreen()
 
     };
   }
