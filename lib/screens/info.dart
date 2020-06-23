@@ -2,8 +2,6 @@ import 'package:cov_scanner/constants.dart';
 import 'package:cov_scanner/utility/Routes.dart';
 import 'package:cov_scanner/widgets/my_header.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class InfoScreen extends StatefulWidget {
 

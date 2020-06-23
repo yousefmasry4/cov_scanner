@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:cov_scanner/utility/Routes.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:cov_scanner/utility/connection.dart';

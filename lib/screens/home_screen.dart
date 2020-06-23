@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:cov_scanner/constants.dart';
 import 'package:cov_scanner/utility/Routes.dart';
-import 'package:cov_scanner/utility/server.dart';
 import 'package:cov_scanner/widgets/info_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
